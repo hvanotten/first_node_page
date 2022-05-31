@@ -4,6 +4,9 @@ const fs = require("fs"); // - comes with everything we need to access the disk 
 const url = require("url"); //- client makes request via url
 const querystring = require("querystring"); //- query parameters that are part of the request
 const figlet = require("figlet"); //- takes a string and turns it into a fancier 404
+// add path for images
+
+
 
 const hostname = '127.0.0.1';
 const port = 8000;
@@ -70,11 +73,7 @@ server.listen(port, hostname, () => {
 })
 
 
-  //conditionals to handle server response 'you clicked on some thing and some thing ran'
-  // everyone else your name take character, pizza place and tv show gives back 100 devs tag
-  // if pizza place is anything other than dominos === 'pizza snob'
-  // if tv show matches anything other bachelor  === 'tv snob'
-  // if conditions match leon status return 'you are a true 100Dev!'
+
 
 
 
