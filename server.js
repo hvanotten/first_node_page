@@ -28,15 +28,14 @@ const server = http.createServer((req, res) => {
             res.end();
         });
     }
-
     else if (page == "/api") {
     if ("student" in params) {
-      if (params["student.pizzaPlace"] == "dominos") {
+      if (params["student"] == "dominos") {
         res.writeHead(200, { "Content-Type": "application/json" });
 
         const objToJson = {
             pizzaPlace: `${pizzaPlace}`,
-            tvShow: `${tvShow}`,
+            // tvShow: `${tvShow}`,
         };
         res.end(JSON.stringify(objToJson));
       } //student = leon
@@ -44,7 +43,7 @@ const server = http.createServer((req, res) => {
         res.writeHead(200, { "Content-Type": "application/json" });
         const objToJson = {
             pizzaPlace: `${pizzaPlace}`,
-            tvShow: `${tvShow}`,
+           // tvShow: `${tvShow}`,
         };
         res.end(JSON.stringify(objToJson));
       } //student != leon
