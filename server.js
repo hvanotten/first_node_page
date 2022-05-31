@@ -24,17 +24,17 @@ const server = http.createServer((req, res) => {
      // else if that writes data to the server
  } else if (page === '/api') {
      if ("student" in params) {
-         if (params["student"] == "dominos") {
+         if (params["student"] == "dominos"){
              res.writeHead(200, { "Content-Type": "application/json" });
 
              const objToJson = {
-                 pizzaPlace: "dominos",
+                 pizzaPlace: "You Are A #100Dev!",
              };
              res.end(JSON.stringify(objToJson));
          } else if (params["student"] !== "dominos") {
              res.writeHead(200, { "Content-Type": "application/json" });
              const objToJson = {
-                 pizzaPlace: "what are we doing",
+                 pizzaPlace: "What are ya doin'? You got GOT!",
              };
              res.end(JSON.stringify(objToJson));
          }

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "figlet": "^1.5.2",
+    "http": "^0.0.1-security",
+    "querystring": "^0.2.1",
+    "url": "^0.11.0"
+  }
+}
