@@ -1,55 +1,46 @@
-
-
 //Modules- these are the packages required..
-const http = require('http'); // - comes with everything we need to start the server, listen and respond to network requests
-const fs = require('fs') // - comes with everything we need to access the disk on server
-const url = require('url');//- client makes request via url
-const querystring = require('querystring');//- query parameters that are part of the request
-const figlet = require('figlet')//- takes a string and turns it into a fancier 404
-//creates the server
+const http = require("http"); // - comes with everything we need to start the server, listen and respond to network requests
+const fs = require("fs"); // - comes with everything we need to access the disk on server
+const url = require("url"); //- client makes request via url
+const querystring = require("querystring"); //- query parameters that are part of the request
+const figlet = require("figlet"); //- takes a string and turns it into a fancier 404
+
+const hostname = '127.0.0.1';
+const port = 8000;
+//creates the server send the http header http status 200 ok, content type/ text plain.
+//creates the path
 const server = http.createServer((req, res) => {
-  //what path are they on?
   const page = url.parse(req.url).pathname;
-  //what query parameters are there? yoinks them
   const params = querystring.parse(url.parse(req.url).query);
-  //print the page to
   console.log(page);
 
-  //conditionals to handle server response 'you clicked on some thing and some thing ran'
-    // everyone else your name take character, pizza place and tv show gives back 100 devs tag
-    // if pizza place is anything other than dominos === 'pizza snob'
-    // if tv show matches anything other bachelor  === 'tv snob'
-    // if conditions match leon status return 'you are a true 100Dev!'
-    if (page === "/") {
-        //respond with html file
+  // write the html to the page
+ if (page === "/") {
         fs.readFile("index.html", function (err, data) {
             res.writeHead(200, { "Content-Type": "text/html" });
             res.write(data);
             res.end();
         });
-    }
-    else if (page == "/api") {
-    if ("student" in params) {
-      if (params["student"] == "dominos") {
-        res.writeHead(200, { "Content-Type": "application/json" });
+     // else if that writes data to the server
+ } else if (page === '/api') {
+     if ("student" in params) {
+         if (params["student"] == "dominos") {
+             res.writeHead(200, { "Content-Type": "application/json" });
 
-        const objToJson = {
-            pizzaPlace: `${pizzaPlace}`,
-            // tvShow: `${tvShow}`,
-        };
-        res.end(JSON.stringify(objToJson));
-      } //student = leon
-      else if (params["student"] != "dominos") {
-        res.writeHead(200, { "Content-Type": "application/json" });
-        const objToJson = {
-            pizzaPlace: `${pizzaPlace}`,
-           // tvShow: `${tvShow}`,
-        };
-        res.end(JSON.stringify(objToJson));
-      } //student != leon
-    } //student if
-  } //else if
-  else if (page == "/css/style.css") {
+             const objToJson = {
+                 pizzaPlace: "dominos",
+             };
+             res.end(JSON.stringify(objToJson));
+         } else if (params["student"] !== "dominos") {
+             res.writeHead(200, { "Content-Type": "application/json" });
+             const objToJson = {
+                 pizzaPlace: "what are we doing",
+             };
+             res.end(JSON.stringify(objToJson));
+         }
+     }
+    //else if's and elses that deals with error messages
+  } else if (page == "/css/style.css") {
     fs.readFile("css/style.css", function (err, data) {
       res.write(data);
       res.end();
@@ -60,7 +51,7 @@ const server = http.createServer((req, res) => {
       res.write(data);
       res.end();
     });
-    //else that deals with error message
+
   } else {
     figlet("404!!", function (err, data) {
       if (err) {
@@ -74,4 +65,16 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(8000);
+server.listen(port, hostname, () => {
+    console.log(`Psst, it's working. Server running at http://${hostname}:${port}/`);
+})
+
+
+  //conditionals to handle server response 'you clicked on some thing and some thing ran'
+  // everyone else your name take character, pizza place and tv show gives back 100 devs tag
+  // if pizza place is anything other than dominos === 'pizza snob'
+  // if tv show matches anything other bachelor  === 'tv snob'
+  // if conditions match leon status return 'you are a true 100Dev!'
+
+
+
