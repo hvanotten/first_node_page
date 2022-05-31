@@ -8,8 +8,8 @@ const figlet = require("figlet"); //- takes a string and turns it into a fancier
 
 
 
-const hostname = '127.0.0.1';
-const port = 8000;
+//const hostname = '127.0.0.1';
+//const port = 8000;
 //creates the server send the http header http status 200 ok, content type/ text plain.
 //creates the path
 const server = http.createServer((req, res) => {
@@ -68,8 +68,8 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(port, hostname, () => {
-    console.log(`Psst, it's working. Server running at http://${hostname}:${port}/`);
+server.listen(8000, () => {
+    console.log(`Psst, it's working.`);
 })
 
 
